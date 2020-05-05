@@ -6,8 +6,8 @@
 % metodo principal para iniciar la interfaz grafica, declaracion de
 % botones, labels, y la pocicion en pantalla.
 inicio:-
-	new(Menu, dialog('Proyect CARRS version Alienigena 2.3', size(1000,800))),
-	new(L,label(nombre,'AGRADESEMOS QUE USE NUESTRO SOFTWARE')),
+	new(Menu, dialog('Proyecto PROGLOG', size(1000,800))),
+	new(L,label(nombre,'Proyecto Programacion Logica y Funcional - ')),
 	new(A,label(nombre,'hecho por Cristian Arreola 12041540')),
 	new(@texto,label(nombre,'responde un breve cuestionario para resolver tu falla')),
 	new(@respl,label(nombre,'')),

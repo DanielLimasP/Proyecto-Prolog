@@ -3,12 +3,14 @@
 :-use_module(library(pce)).
 :-use_module(library(pce_style_item)).
 
-% metodo principal para iniciar la interfaz grafica, declaracion de
+% Metodo principal para iniciar la interfaz grafica, declaracion de
 % botones, labels, y la pocicion en pantalla.
+%
+% Para iniciar el programa principal hacer doble click sobre la
 inicio:-
 	new(Menu, dialog('Proyecto PROGLOG', size(1000,800))),
 	new(L,label(nombre,'Proyecto Programacion Logica y Funcional - ')),
-	new(A,label(nombre,'hecho por Cristian Arreola 12041540')),
+	new(A,label(nombre,'Hecho por equipo 1')),
 	new(@texto,label(nombre,'responde un breve cuestionario para resolver tu falla')),
 	new(@respl,label(nombre,'')),
 	new(Salir,button('SALIR',and(message(Menu, destroy),message(Menu,free)))),

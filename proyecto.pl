@@ -39,9 +39,16 @@ fallas('Cambiar la fuente de poder:
 	quemo. Para cambiar la fuente de poder, es recomendable buscar un
 	tutorial en linea. Llevar esto a cabo no es dificil ni mucho menos.'):-fuentePoder,!.
 
-fallas('realizar una alineacion y balanceo:
-        la solucion para esto es llavar el auto a un taller
-        para que alinien y balancen las llantas del auto'):-suspension,!.
+fallas('Realizar una limpieza profunda de la computadora:
+		La solucion a este problema es relativamente sencilla. Tu computadora
+		se apaga o reinicia sola para prevenir danos, debido a que el sistema 
+		se esta sobrecalentando. Esto comunmente sucede por la acumulacion del
+		polvo dentro del equipo. Lo recomendable es conseguir aire comprimido 
+		y limpiar el sistema desde adentro, haciendo que todo el polvo se vaya. 
+		Es de suma importancia que exista un buen flujo de aire dentro de la 
+		computadora, para evitar que esta se sobrecaliente. Si el problema 
+		persiste, trata de conseguir mejor enfriamiento, realizar de nuevo
+		el test, o ver a un tecnico.'):-suciedad,!.
 
 fallas('verificar el estado actual de la bateria:
 	primero abra el cofre y ubique la bateria del coche
@@ -116,7 +123,7 @@ sonido:- cambio_bocina,
 %identificador de falla que dirige a las preguntas correspondientes
 
 fuentePoder:-pregunta('Tu computadora no recibe nada de energia?'),!.
-alineacion_direccion:-pregunta('tienes problemas de la suspencion?'),!.
+suciedad:-pregunta('Tu computadora se apaga o se reinicia sola?'),!.
 bateria_agotada:-pregunta('tienes problemas electricos?'),!.
 cambio_frenos:-pregunta('tienes problemas con tus frenos?'),!.
 cambio_bocina:-pregunta('tienes problemas con alguna bocina?'),!.

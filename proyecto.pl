@@ -8,10 +8,10 @@
 %
 % Para iniciar el programa principal hacer doble click sobre la
 inicio:-
-	new(Menu, dialog('Proyecto PROGLOG', size(1000,800))),
-	new(L,label(nombre,'Proyecto Programacion Logica y Funcional - ')),
+	new(Menu, dialog('Proyecto PROGLOG: Programacion Logica y Funcional', size(1000,800))),
+	new(L,label(nombre,'Diagnostico de problemas de computadoras')),
 	new(A,label(nombre,'Hecho por equipo 1')),
-	new(@texto,label(nombre,'responde un breve cuestionario para resolver tu falla')),
+	new(@texto,label(nombre,'Responde un breve cuestionario para resolver la falla de tu PC')),
 	new(@respl,label(nombre,'')),
 	new(Salir,button('SALIR',and(message(Menu, destroy),message(Menu,free)))),
 	new(@boton,button('realizar test',message(@prolog,botones))),
@@ -28,15 +28,16 @@ inicio:-
 
 %solucion a las fallas de acuerdo a las reglas de diagnostico
 
-fallas('hacer un cambio de aceite:
-	primero abra el cofre y ubique la figura del carter,
-	el motor debe estar tibio antes de proceder, despues
-	ubicar la valvula de purgacion debajo del motor y
-	colocar una cubeta debajo, abrir la valvula y drenar
-	el aceite antiguo, vea su manual de usuario para saber
-	cuantos litros de aceite necesita su coche despues de
-	drenar el aceite cierre la valvula y abra el carter
-	para rellenar con el nuevo aceite y tapar el carter'):-aceite,!.
+% Fuente de poder
+fallas('Cambiar la fuente de poder:
+	Lo mas probable es que tu fuente de poder haya pasado a mejor vida.
+	Puedes comprobarlo de primera mano, para lo cual necesitaras al menos
+	un desarmador, abrir tu computadora y remover la fuente. Las fuentes 
+	de poder tienden a quemarse debido a problemas electricos y 
+	"malas configuraciones". Generalmente olera a quemado y despues de
+	hacer una inspeccion mas a detalle, podras ver el componente que se 
+	quemo. Para cambiar la fuente de poder, es recomendable buscar un
+	tutorial en linea. Llevar esto a cabo no es dificil ni mucho menos.'):-fuentePoder,!.
 
 fallas('realizar una alineacion y balanceo:
         la solucion para esto es llavar el auto a un taller
@@ -74,17 +75,15 @@ fallas('seguro subes demaciado el volumen:
 	del auto si estan bien conectados los cables'):-sonido,!.
 
 
-fallas('sin resultados! si los problemas persisten utilice un dispositivo
-	alienigena con mas ram y 12 nucleos cpu:/').
+fallas('sin resultados. Por favor, vuelve a realizar el test o has que 
+	un tecnico revise tu computadora.').
 
 % preguntas para resolver las fallas con su respectivo identificador de
 % falla
-aceite:- cambio_aceite,
-	pregunta('tienes problemas de motor?'),
-	pregunta('su automovil gasta mas combustible de lo debido?'),
-	pregunta('su motor se escucha muy ruidoso? '),
-	pregunta('tiene problemas para arrancar el veiculo en frio?'),
-	pregunta('siente que su motor tiene menos fuerza que antes? ').
+fuentePoder:- ,
+	pregunta('Al tratar de iniciar tu computadora, esta no hace nada?'),
+	pregunta('Ultimamente has tocado un boton o switch que no deberias?'),
+	pregunta('Ha olido a quemado ultimamente?').
 
 suspension:- alineacion_direccion,
 	pregunta('tienes problemas de la suspencion?'),
@@ -116,7 +115,7 @@ sonido:- cambio_bocina,
 
 %identificador de falla que dirige a las preguntas correspondientes
 
-cambio_aceite:-pregunta('tienes problemas de motor?'),!.
+fuentePoder:-pregunta('Tu computadora no recibe nada de energia?'),!.
 alineacion_direccion:-pregunta('tienes problemas de la suspencion?'),!.
 bateria_agotada:-pregunta('tienes problemas electricos?'),!.
 cambio_frenos:-pregunta('tienes problemas con tus frenos?'),!.

@@ -3,13 +3,15 @@
 :-use_module(library(pce)).
 :-use_module(library(pce_style_item)).
 
-% metodo principal para iniciar la interfaz grafica, declaracion de
+% Metodo principal para iniciar la interfaz grafica, declaracion de
 % botones, labels, y la pocicion en pantalla.
+%
+% Para iniciar el programa principal hacer doble click sobre la
 inicio:-
-	new(Menu, dialog('Proyecto PROGLOG', size(1000,800))),
-	new(L,label(nombre,'Proyecto Programacion Logica y Funcional - ')),
-	new(A,label(nombre,'hecho por Cristian Arreola 12041540')),
-	new(@texto,label(nombre,'responde un breve cuestionario para resolver tu falla')),
+	new(Menu, dialog('Proyecto PROGLOG: Programacion Logica y Funcional', size(1000,800))),
+	new(L,label(nombre,'Diagnostico de enfermedad COVId-19)),
+	new(A,label(nombre,'Hecho por equipo 1')),
+	new(@texto,label(nombre,'Responde un breve cuestionario saber si tienes COVID, Gripe, Influenza o estas sano')),
 	new(@respl,label(nombre,'')),
 	new(Salir,button('SALIR',and(message(Menu, destroy),message(Menu,free)))),
 	new(@boton,button('realizar test',message(@prolog,botones))),
@@ -24,65 +26,71 @@ inicio:-
 	send(Menu,display,@respl,point(20,130)),
 	send(Menu,open_centered).
 
-%solucion a las fallas de acuerdo a las reglas de diagnostico
-
-fallas('hacer un cambio de aceite:
-	primero abra el cofre y ubique la figura del carter,
-	el motor debe estar tibio antes de proceder, despues
-	ubicar la valvula de purgacion debajo del motor y
-	colocar una cubeta debajo, abrir la valvula y drenar
-	el aceite antiguo, vea su manual de usuario para saber
-	cuantos litros de aceite necesita su coche despues de
-	drenar el aceite cierre la valvula y abra el carter
-	para rellenar con el nuevo aceite y tapar el carter'):-aceite,!.
-
-fallas('realizar una alineacion y balanceo:
-        la solucion para esto es llavar el auto a un taller
-        para que alinien y balancen las llantas del auto'):-suspension,!.
-
-fallas('verificar el estado actual de la bateria:
-	primero abra el cofre y ubique la bateria del coche
-        verifique si estan bien conctados los cables, arranque
-	el coche, si no arranca entonces la bateria esta muerta
-	para esto recarguela pase corriente con otro coche,
-	en caso de no tener exito debera reemplazar la bateria'):-electronico,!.
-
-fallas('llego la hora de cambiar tus pastillas de freno:
-	si se escucha un chillido agudo al frenar es tiempo
-        de cambiar las pastillas de los frenos, para ello hay
-	que levantar con un gato hidraulico el lado del freno
-	donde se va a cambiar, con una llave inglesa y una
-	matraca aflojar los cubre pastillas y sacar las patillas
-	antiguas y reponerlas con las nuevas, colocar todo en su
-	lugar y bla bla bla. '):-frenos,!.
-
-fallas('posiblemente tu auto pasara a mejor vida:
-	esta luz puede indicar varias fallas en el sistema de la ECU,
-	las pricipales son fallas de sensores, servicio de motor,
-	catalizador, etc. si se cuenta con un escaner automotriz puede
-	borrarse la falla pero esto no arregla el problema, para ello
-	acuda con su mecanico certificado por los aliens.'):-computadora,!.
-
-fallas('seguro subes demaciado el volumen:
-	primero debes ubicar la bocina que no se escucha despues
-        quitar o desatornillar el caparcete que protege la bocina
-	y verificar que la bocina este bien conectado o tenga un cable
-	quemado, dado uno de los casos deberas cambiar el cable
-	o remplazar la bocina. Otro caso es verificar el estereo
-	del auto si estan bien conectados los cables'):-sonido,!.
+% Enfermedades
 
 
-fallas('sin resultados! si los problemas persisten utilice un dispositivo
-	alienigena con mas ram y 12 nucleos cpu:/').
+estado('Cambiar la fuente de poder:
+		Lo mas probable es que tu fuente de poder haya pasado a mejor vida.
+		Puedes comprobarlo de primera mano, para lo cual necesitaras al menos
+		un desarmador, abrir tu computadora y remover la fuente. Las fuentes 
+		de poder tienden a quemarse debido a problemas electricos y 
+		"malas configuraciones". Generalmente olera a quemado y despues de
+		hacer una inspeccion mas a detalle, podras ver el componente que se 
+		quemo. Para cambiar la fuente de poder, es recomendable buscar un
+		tutorial en linea. Llevar esto a cabo no es dificil ni mucho menos.'):-fuentePoder,!.
 
-% preguntas para resolver las fallas con su respectivo identificador de
+estado('Realizar una limpieza profunda de la computadora:
+		La solucion a este problema es relativamente sencilla. Tu computadora
+		se apaga o reinicia sola para prevenir danos, debido a que el sistema 
+		se esta sobrecalentando. Esto comunmente sucede por la acumulacion del
+		polvo dentro del equipo. Lo recomendable es conseguir aire comprimido 
+		y limpiar el sistema desde adentro, haciendo que todo el polvo se vaya. 
+		Es de suma importancia que exista un buen flujo de aire dentro de la 
+		computadora, para evitar que esta se sobrecaliente. Si el problema 
+		persiste, trata de conseguir mejor enfriamiento, realizar de nuevo
+		el test, o ver a un tecnico.'):-suciedad,!.
+
+estado('verificar el estado actual de la bateria:
+		primero abra el cofre y ubique la bateria del coche
+		verifique si estan bien conctados los cables, arranque
+		el coche, si no arranca entonces la bateria esta muerta
+		para esto recarguela pase corriente con otro coche,
+		en caso de no tener exito debera reemplazar la bateria'):-electronico,!.
+
+estado('llego la hora de cambiar tus pastillas de freno:
+		si se escucha un chillido agudo al frenar es tiempo
+		de cambiar las pastillas de los frenos, para ello hay
+		que levantar con un gato hidraulico el lado del freno
+		donde se va a cambiar, con una llave inglesa y una
+		matraca aflojar los cubre pastillas y sacar las patillas
+		antiguas y reponerlas con las nuevas, colocar todo en su
+		lugar y bla bla bla. '):-frenos,!.
+
+estado('posiblemente tu auto pasara a mejor vida:
+		esta luz puede indicar varias estado en el sistema de la ECU,
+		las pricipales son estado de sensores, servicio de motor,
+		catalizador, etc. si se cuenta con un escaner automotriz puede
+		borrarse la falla pero esto no arregla el problema, para ello
+		acuda con su mecanico certificado por los aliens.'):-computadora,!.
+
+estado('seguro subes demaciado el volumen:
+		primero debes ubicar la bocina que no se escucha despues
+		quitar o desatornillar el caparcete que protege la bocina
+		y verificar que la bocina este bien conectado o tenga un cable
+		quemado, dado uno de los casos deberas cambiar el cable
+		o remplazar la bocina. Otro caso es verificar el estereo
+		del auto si estan bien conectados los cables'):-sonido,!.
+
+
+estado('sin resultados. Por favor, vuelve a realizar el test o has que 
+		un tecnico revise tu computadora.').
+
+% preguntas para resolver las estado con su respectivo identificador de
 % falla
-aceite:- cambio_aceite,
-	pregunta('tienes problemas de motor?'),
-	pregunta('su automovil gasta mas combustible de lo debido?'),
-	pregunta('su motor se escucha muy ruidoso? '),
-	pregunta('tiene problemas para arrancar el veiculo en frio?'),
-	pregunta('siente que su motor tiene menos fuerza que antes? ').
+fuentePoder:- ,
+	pregunta('Al tratar de iniciar tu computadora, esta no hace nada?'),
+	pregunta('Ultimamente has tocado un boton o switch que no deberias?'),
+	pregunta('Ha olido a quemado ultimamente?').
 
 suspension:- alineacion_direccion,
 	pregunta('tienes problemas de la suspencion?'),
@@ -114,8 +122,8 @@ sonido:- cambio_bocina,
 
 %identificador de falla que dirige a las preguntas correspondientes
 
-cambio_aceite:-pregunta('tienes problemas de motor?'),!.
-alineacion_direccion:-pregunta('tienes problemas de la suspencion?'),!.
+fuentePoder:-pregunta('Tu computadora no recibe nada de energia?'),!.
+suciedad:-pregunta('Tu computadora se apaga o se reinicia sola?'),!.
 bateria_agotada:-pregunta('tienes problemas electricos?'),!.
 cambio_frenos:-pregunta('tienes problemas con tus frenos?'),!.
 cambio_bocina:-pregunta('tienes problemas con alguna bocina?'),!.
@@ -158,7 +166,7 @@ limpiar.
 botones :- lim,
 	send(@boton,free),
 	send(@btncarrera,free),
-	fallas(Falla),
+	estado(Falla),
 	send(@texto,selection('la solucion es ')),
 	send(@respl,selection(Falla)),
 	new(@boton,button('inicia procedimiento mecanico',message(@prolog,botones))),

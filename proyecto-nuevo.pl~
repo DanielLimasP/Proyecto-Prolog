@@ -2,18 +2,18 @@
 
 :-use_module(library(pce)).
 :-use_module(library(pce_style_item)).
+:-pce_image_directory('./images').
 
 % metodo principal para iniciar la interfaz grafica, declaracion de
 % botones, labels, y la pocicion en pantalla.
 inicio:-
 	new(Menu, dialog('Analisis de COVID 19, Gripe o Influenza', size(1000,800))),
-	new(L,label(nombre,'ESTE CUESTIONARIO NO REEMPLAZA UN DIAGNOSTICO PROFESIONAL')),
-	new(A,label(nombre,'Progamacion Logica y Funcional')),
+	new(L,label(nombre, 'ESTE CUESTIONARIO NO REEMPLAZA UN DIAGNOSTICO PROFESIONAL')),
+	new(A,label(nombre, 'Progamacion Logica y Funcional')),
 	new(@texto,label(nombre,'Responde un breve cuestionario para diagnosticar tu salud')),
 	new(@respl,label(nombre,'')),
 	new(Salir,button('Salir',and(message(Menu, destroy),message(Menu,free)))),
 	new(@boton,button('Realizar cuestionario',message(@prolog,botones))),
-
 
 	send(Menu,append(L)),new(@btncarrera,button('Diagnostico?')),
 	send(Menu,display,L,point(125,20)),
@@ -23,6 +23,8 @@ inicio:-
 	send(Menu,display,Salir,point(20,400)),
 	send(Menu,display,@respl,point(20,130)),
 	send(Menu,open_centered).
+
+        resource(covid, image, image('covid.png')).
 
 %Diagnosticos
 
@@ -52,7 +54,6 @@ diagnosticos('Su diagnostico no ha resultado ser COVID, Gripe o Influenza, por l
 % identificador de falla
 
 covid:- dificultad_respirar,
-	pregunta('has tenido dificultad para respirar ultimamente?'),
 	pregunta('has tenido fiebre?'),
 	pregunta('te has sentido fatigado? '),
 	pregunta('has tenido tos?'),
@@ -61,7 +62,6 @@ covid:- dificultad_respirar,
 	pregunta('has tenido dolor de cabeza?').
 
 gripe:- estornudos,
-	pregunta('has tenido estornudos?'),
 	pregunta('te has sentido fatigado? '),
 	pregunta('has tenido tos?'),
 	pregunta('has tenedio dolor corporal? '),
@@ -70,7 +70,6 @@ gripe:- estornudos,
 
 
 influenza:- fiebre_subita,
-	pregunta('has presentado fiebre subita?'),
 	pregunta('te has sentido fatigado? '),
 	pregunta('has tenido tos?'),
 	pregunta('has tenedio dolor corporal? '),

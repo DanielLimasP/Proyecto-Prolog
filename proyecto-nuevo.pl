@@ -2,18 +2,20 @@
 
 :-use_module(library(pce)).
 :-use_module(library(pce_style_item)).
+:-pce_image_directory('./images').
+resource(covid, image, image('covid.png')).
+
 
 % metodo principal para iniciar la interfaz grafica, declaracion de
 % botones, labels, y la pocicion en pantalla.
 inicio:-
 	new(Menu, dialog('Analisis de COVID 19, Gripe o Influenza', size(1000,800))),
-	new(L,label(nombre,'ESTE CUESTIONARIO NO REEMPLAZA UN DIAGNOSTICO PROFESIONAL')),
-	new(A,label(nombre,'Progamacion Logica y Funcional')),
+	new(L,label(nombre, 'ESTE CUESTIONARIO NO REEMPLAZA UN DIAGNOSTICO PROFESIONAL')),
+	new(A,label(nombre, 'Progamacion Logica y Funcional')),
 	new(@texto,label(nombre,'Responde un breve cuestionario para diagnosticar tu salud')),
 	new(@respl,label(nombre,'')),
 	new(Salir,button('Salir',and(message(Menu, destroy),message(Menu,free)))),
 	new(@boton,button('Realizar cuestionario',message(@prolog,botones))),
-
 
 	send(Menu,append(L)),new(@btncarrera,button('Diagnostico?')),
 	send(Menu,display,L,point(125,20)),
